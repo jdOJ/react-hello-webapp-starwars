@@ -1,13 +1,11 @@
 import React from 'react';
 import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import starWars from "../../img/icons8-la-guerra-de-las-galaxias-48.png";
-import { useNavigate } from "react-router-dom";
 import { getImageUrl } from "./imageMap.js";
 
 const CharacterCard = ({ uid, name, properties, type, onFavoriteClick, isFavorite }) => {
-  const navigate = useNavigate();
   const imageUrl = getImageUrl(properties.name);
+
   const getDetails = () => {
     switch (type) {
       case 'characters':
@@ -51,7 +49,7 @@ const CharacterCard = ({ uid, name, properties, type, onFavoriteClick, isFavorit
         <h5 className="card-title">{name}</h5>
         {getDetails()}
         <div className="d-flex justify-content-between align-items-center">
-          <Link to="/single/:type/:id">
+          <Link to={`/single/${type}/${uid}`}>
             <button className="btn btn-outline-primary btn-sm">Learn more!</button>
           </Link>
           <button

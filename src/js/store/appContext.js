@@ -31,6 +31,9 @@ const injectContext = PassedComponent => {
 			 * state.actions.loadSomeData(); <---- calling this function from the flux.js actions
 			 *
 			 **/
+			state.actions.getCharactersList(); // Cargar la lista de personajes al inicio
+			state.actions.getPlanetsList(); // Cargar la lista de planetas al inicio
+			state.actions.getVehiclesList(); // Cargar la lista de vehículos al inicio
 			;
 		}, []);
 
