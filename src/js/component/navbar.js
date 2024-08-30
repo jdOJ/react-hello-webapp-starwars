@@ -28,7 +28,7 @@ export const Navbar = () => {
                 </Link>
                 <div className="ml-auto">
                     <Dropdown>
-                        <Dropdown.Toggle variant="danger" id="dropdown-basic">
+                        <Dropdown.Toggle variant="warning" id="dropdown-basic">
                             Favorites <span className="badge bg-secondary">{store.favorites.length}</span>
                         </Dropdown.Toggle>
 

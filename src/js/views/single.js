@@ -117,7 +117,7 @@ const DetailView = () => {
               style={{ 
                 objectFit: 'cover', 
                 width: '100%', 
-                height: '300px', // Altura fija para todas las imágenes
+                height: '500px', // Altura fija para todas las imágenes
                 maxWidth: '100%' 
               }}
             />
