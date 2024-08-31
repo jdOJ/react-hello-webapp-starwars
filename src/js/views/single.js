@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Context } from '../store/appContext';
+import { getDescription } from '../component/DescripcionMap.js';
+
 
 const characterImages = {
   "Luke Skywalker": "https://raw.githubusercontent.com/vieraboschkova/swapi-gallery/main/static/assets/img/people/1.jpg",
@@ -13,26 +15,26 @@ const characterImages = {
   "R5-D4": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/8.jpg",
   "Biggs Darklighter": "https://vieraboschkova.github.io/swapi-gallery/static/assets/img/people/9.jpg",
   "Obi-Wan Kenobi": "https://github.com/vieraboschkova/swapi-gallery/blob/main/static/assets/img/people/10.jpg?raw=true",
-  "Sand Crawler":"https://starwars-visualguide.com/assets/img/vehicles/4.jpg",
-  "T-16 skyhopper":"https://starwars-visualguide.com/assets/img/vehicles/6.jpg",
-  "X-34 landspeeder":"https://starwars-visualguide.com/assets/img/vehicles/7.jpg",
-  "TIE/LN starfighter":"https://starwars-visualguide.com/assets/img/vehicles/8.jpg",
-  "Snowspeeder":"https://starwars-visualguide.com/assets/img/vehicles/14.jpg",
-  "TIE bomber":"https://starwars-visualguide.com/assets/img/vehicles/16.jpg",
-  "AT-AT":"https://starwars-visualguide.com/assets/img/vehicles/18.jpg",
-  "AT-ST":"https://starwars-visualguide.com/assets/img/vehicles/19.jpg",
-  "Storm IV Twin-Pod cloud car":"https://starwars-visualguide.com/assets/img/vehicles/20.jpg",
-  "Sail barge":"https://starwars-visualguide.com/assets/img/vehicles/24.jpg",
-  "Tatooine":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwzCJiK-EUo9WaPahSHoi-XpZS1dbAr4PtHQ&s",
-  "Alderaan":"https://starwars-visualguide.com/assets/img/planets/2.jpg",
-  "Yavin IV":"https://starwars-visualguide.com/assets/img/planets/3.jpg",
+  "Sand Crawler": "https://starwars-visualguide.com/assets/img/vehicles/4.jpg",
+  "T-16 skyhopper": "https://starwars-visualguide.com/assets/img/vehicles/6.jpg",
+  "X-34 landspeeder": "https://starwars-visualguide.com/assets/img/vehicles/7.jpg",
+  "TIE/LN starfighter": "https://starwars-visualguide.com/assets/img/vehicles/8.jpg",
+  "Snowspeeder": "https://starwars-visualguide.com/assets/img/vehicles/14.jpg",
+  "TIE bomber": "https://starwars-visualguide.com/assets/img/vehicles/16.jpg",
+  "AT-AT": "https://starwars-visualguide.com/assets/img/vehicles/18.jpg",
+  "AT-ST": "https://starwars-visualguide.com/assets/img/vehicles/19.jpg",
+  "Storm IV Twin-Pod cloud car": "https://starwars-visualguide.com/assets/img/vehicles/20.jpg",
+  "Sail barge": "https://starwars-visualguide.com/assets/img/vehicles/24.jpg",
+  "Tatooine": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwzCJiK-EUo9WaPahSHoi-XpZS1dbAr4PtHQ&s",
+  "Alderaan": "https://starwars-visualguide.com/assets/img/planets/2.jpg",
+  "Yavin IV": "https://starwars-visualguide.com/assets/img/planets/3.jpg",
   "Hoth": "https://starwars-visualguide.com/assets/img/planets/4.jpg",
-  "Dagobah":"https://starwars-visualguide.com/assets/img/planets/5.jpg",
-  "Bespin":"https://starwars-visualguide.com/assets/img/planets/6.jpg",
-  "Endor":"https://starwars-visualguide.com/assets/img/planets/7.jpg",
-  "Naboo":"https://starwars-visualguide.com/assets/img/planets/8.jpg",
-  "Coruscant":"https://starwars-visualguide.com/assets/img/planets/9.jpg",
-  "Kamino":"https://starwars-visualguide.com/assets/img/planets/10.jpg"
+  "Dagobah": "https://starwars-visualguide.com/assets/img/planets/5.jpg",
+  "Bespin": "https://starwars-visualguide.com/assets/img/planets/6.jpg",
+  "Endor": "https://starwars-visualguide.com/assets/img/planets/7.jpg",
+  "Naboo": "https://starwars-visualguide.com/assets/img/planets/8.jpg",
+  "Coruscant": "https://starwars-visualguide.com/assets/img/planets/9.jpg",
+  "Kamino": "https://starwars-visualguide.com/assets/img/planets/10.jpg"
 };
 
 const getImageUrl = (name) => characterImages[name] || "https://via.placeholder.com/150";
@@ -90,6 +92,8 @@ const DetailView = () => {
     ));
   };
 
+  const description = getDescription(item.properties.name);
+
   const getItemType = () => {
     switch (type) {
       case 'characters':
@@ -106,31 +110,35 @@ const DetailView = () => {
 
   return (
     <div className="container mt-5">
-      <h1 className="mb-4">{item.properties.name}</h1>
+      <h1 className="mb-4 text-center text-danger">{item.properties.name}</h1>
       <div className="card">
         <div className="row g-0">
-        <div className="col-md-4 d-flex align-items-center justify-content-center">
-            <img 
-              src={getImageUrl(item.properties.name)} 
-              alt={item.properties.name} 
-              className="img-fluid rounded-start" 
-              style={{ 
-                objectFit: 'cover', 
-                width: '100%', 
+          <div className="col-md-4 d-flex align-items-center justify-content-center">
+            <img
+              src={getImageUrl(item.properties.name)}
+              alt={item.properties.name}
+              className="img-fluid rounded-start"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
                 height: '500px', // Altura fija para todas las imágenes
-                maxWidth: '100%' 
+                maxWidth: '100%'
               }}
             />
           </div>
           <div className="col-md-8">
+            
             <div className="card-body">
+              <p className="card-text"><strong>Description:</strong> {description}</p>
               {renderProperties()}
             </div>
+
           </div>
         </div>
       </div>
+      <div className='d-flex align-item-center'>
       <button
-        className="btn btn-primary mt-3"
+        className="btn btn-warning mt-3"
         onClick={() => actions.addToFavorites(item, getItemType())}
       >
         {store.favorites.some(fav => fav.uniqueId === `${item.uid}-${getItemType()}`)
@@ -141,6 +149,8 @@ const DetailView = () => {
       <button className="btn btn-secondary mt-3 ms-2" onClick={() => navigate('/')}>
         Back to Home
       </button>
+      </div>
+      
     </div>
   );
 };

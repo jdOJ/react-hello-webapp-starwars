@@ -50,7 +50,7 @@ const CharacterCard = ({ uid, name, properties, type, onFavoriteClick, isFavorit
         {getDetails()}
         <div className="d-flex justify-content-between align-items-center">
           <Link to={`/single/${type}/${uid}`}>
-            <button className="btn btn-outline-primary btn-sm">Learn more!</button>
+            <button className="btn btn-outline-warning btn-sm text-dark">Learn more!</button>
           </Link>
           <button
             className={`btn btn-${isFavorite ? 'warning' : 'outline-warning'} btn-sm`}

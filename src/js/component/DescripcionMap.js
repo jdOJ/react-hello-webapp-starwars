@@ -31,4 +31,7 @@ const descriptionItem = {
     "Kamino": "An oceanic planet known for its cloning facilities and production of the Republic's clone army."
 };
 
-export const getDescription = (name) => descriptionItem[name] || "No description available.";
+export const getDescription = (name) => {
+    if (!name) return "No description available.";
+    return descriptionItem[name] || "No description available.";
+};
